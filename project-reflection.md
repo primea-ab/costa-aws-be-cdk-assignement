@@ -2,8 +2,8 @@
 The assignment was clear, I was to build a event driven AWS CDK application which handles events through EventBridge, validates and transforms data and persists it to a MongoDB database.
 I thought the assignemnt got a good flow and the structure became clear to set up.
 
-The most fun part was figuring out edge cases like MongoDB connection failures and malformed events, plus solving connectivity issues through retry logic and dead letter queues.
 
+### What I liked the most
 The most fun part was figuring out edge cases like MongoDB connection failures and malformed events, also solving connectivity issues through retry logic and dead letter queues. I implemented idempotent operations using MongoDB's compound `_id` strategy so that events could be safely processed.
 
 ###  What could have gone better?
