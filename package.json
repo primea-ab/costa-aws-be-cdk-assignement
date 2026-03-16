@@ -1,0 +1,37 @@
+{
+  "name": "costa-fleet-processor",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --runInBand",
+    "test:unit": "jest --testPathPatterns=test/unit",
+    "test:snapshot": "jest --testPathPatterns=test/fleet-processing-stack",
+    "test:integration": "NODE_OPTIONS=--experimental-vm-modules jest --testPathPatterns=test/integration",
+    "bootstrap:local": "AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test AWS_DEFAULT_REGION=us-east-1 CDK_DISABLE_LEGACY_EXPORT_WARNING=1 cdklocal bootstrap",
+    "deploy:local": "npm run build && npm run test:unit && npm run test:snapshot && npm run synth && AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test AWS_DEFAULT_REGION=us-east-1 CDK_DISABLE_LEGACY_EXPORT_WARNING=1 cdklocal deploy",
+    "deploy:aws": "npm run build && npm run test:unit && npm run test:snapshot && npm run synth && cdk deploy",
+    "synth": "cdk synth",
+    "diff:local": "AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test AWS_DEFAULT_REGION=us-east-1 cdklocal diff",
+    "diff:aws": "cdk diff"
+  },
+  "devDependencies": {
+    "@testcontainers/mongodb": "^11.12.0",
+    "@types/aws-lambda": "^8.10.161",
+    "@types/jest": "^30",
+    "@types/node": "^24.10.1",
+    "aws-cdk": "2.1111.0",
+    "aws-cdk-local": "^3.0.1",
+    "esbuild": "^0.27.4",
+    "jest": "^30",
+    "ts-jest": "^29",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.9.3"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.242.0",
+    "constructs": "^10.5.0",
+    "dotenv": "^17.3.1",
+    "mongodb": "^7.1.0"
+  }
+}

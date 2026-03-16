@@ -1,0 +1,25 @@
+services:
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=events,lambda,logs,iam,cloudformation,s3,ssm,sqs
+      - DEFAULT_REGION=eu-west-1
+      - LAMBDA_EXECUTOR=docker
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "localstack-data:/var/lib/localstack"
+
+  mongodb:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=fleet
+    volumes:
+      - "mongodb-data:/data/db"
+
+volumes:
+  localstack-data:
+  mongodb-data:
